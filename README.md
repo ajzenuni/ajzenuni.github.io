@@ -1,2 +1,0 @@
-# ajzenuni.github.io
-Website
