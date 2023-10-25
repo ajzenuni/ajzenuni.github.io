@@ -1,0 +1,25 @@
+configs:
+  - id: alphaManagmentZone
+    type:
+      settings:
+        schema: builtin:management-zones
+        scope: environment
+    config:
+      name: "[auto] - Alpha"
+      template: object.json
+      skip: false
+      parameters:
+        description: "ManagementZone for team Alpha"
+        identifier: "alpha"
+  - id: bravoManagmentZone
+    type:
+      settings:
+        schema: builtin:management-zones
+        scope: environment
+    config:
+      name: "[auto] - Bravo"
+      template: object.json
+      skip: false
+      parameters:
+        description: "Ownership for team Bravo"
+        identifier: "bravo"

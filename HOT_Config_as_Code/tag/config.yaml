@@ -1,0 +1,13 @@
+configs:
+  - id: teamTagId
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment
+    config:
+      name: "[auto] - team"
+      template: object.json
+      skip: false
+      parameters:
+        description: "Team tag dependent on the dt.owner/team label"
+

@@ -1,0 +1,80 @@
+{
+    "name": "{{.name}}",
+    "description": "{{.description}}",
+    "rules":[
+      {
+        "enabled": true,
+        "valueFormat": "bravo",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CONTAINER_GROUP\"),toRelationship.isInstanceOf(type(\"CONTAINER_GROUP_INSTANCE\"),fromRelationship.isCgiOfCai(type(\"CLOUD_APPLICATION_INSTANCE\"),cloudApplicationLabels(\"team:bravo\")))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "alpha",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CONTAINER_GROUP\"),toRelationship.isInstanceOf(type(\"CONTAINER_GROUP_INSTANCE\"),fromRelationship.isCgiOfCai(type(\"CLOUD_APPLICATION_INSTANCE\"),cloudApplicationLabels(\"team:alpha\")))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "bravo",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CONTAINER_GROUP_INSTANCE\"),fromRelationship.isCgiOfCai(type(cloud_application_instance),cloudApplicationLabels(\"team:bravo\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "alpha",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CONTAINER_GROUP_INSTANCE\"),fromRelationship.isCgiOfCai(type(cloud_application_instance),cloudApplicationLabels(\"team:alpha\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "bravo",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CLOUD_APPLICATION_NAMESPACE\"),fromRelationship.isNamespaceOfCai(type(cloud_application_instance),cloudApplicationLabels(\"team:bravo\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "alpha",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CLOUD_APPLICATION_NAMESPACE\"),fromRelationship.isNamespaceOfCai(type(cloud_application_instance),cloudApplicationLabels(\"team:alpha\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "bravo",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CLOUD_APPLICATION\"),toRelationship.isInstanceOf(type(cloud_application_instance),cloudApplicationLabels(\"team:bravo\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "alpha",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"CLOUD_APPLICATION\"),toRelationship.isInstanceOf(type(cloud_application_instance),cloudApplicationLabels(\"team:alpha\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "{ProcessGroup:Kubernetes:team}",
+        "valueNormalization": "Leave text as-is",
+        "type": "ME",
+        "attributeRule": {
+          "entityType": "PROCESS_GROUP",
+          "conditions": [
+            {
+              "key": "CLOUD_APPLICATION_LABELS",
+              "dynamicKey": "team",
+              "operator": "EXISTS"
+            }
+          ],
+          "pgToHostPropagation": true,
+          "pgToServicePropagation": true
+        }
+      }
+    ]
+}

@@ -1,0 +1,27 @@
+configs:
+  - id: alphaOwnership
+    type:
+      settings:
+        schema: builtin:ownership.teams
+        scope: environment
+    config:
+      name: "[auto] - Alpha"
+      template: object.json
+      skip: false
+      parameters:
+        description: "Ownership for team Alpha"
+        identifier: "alpha"
+        url: "https://team.alpha.com"
+  - id: bravoOwnership
+    type:
+      settings:
+        schema: builtin:ownership.teams
+        scope: environment
+    config:
+      name: "[auto] - Bravo"
+      template: object.json
+      skip: false
+      parameters:
+        description: "Ownership for team Bravo"
+        identifier: "bravo"
+        url: "https://team.bravo.com"
