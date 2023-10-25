@@ -18,6 +18,8 @@ spec:
         team: "alpha"
         dt.owner: "alpha"
         app.kubernetes.io/version: 1.0.1
+      annotations:
+        team: alpha
     spec:
       containers:
         - env:

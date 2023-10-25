@@ -19,6 +19,8 @@ spec:
         team: bravo
         dt.owner: bravo
         app.kubernetes.io/version: 1.0.1
+      annotations:
+        team: bravo
     spec:
       containers:
         - env:
