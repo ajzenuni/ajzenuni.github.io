@@ -5,6 +5,8 @@ metadata:
   labels:
     team: alpha
     dt.owner: alpha
+  annotations:
+    team: alpha
 spec:
   selector:
     matchLabels:
@@ -15,8 +17,8 @@ spec:
         app: angular-frontend
         app.kubernetes.io/name: angular-frontend
         app.kubernetes.io/part-of: easytravel
-        team: "alpha"
-        dt.owner: "alpha"
+        team: alpha
+        dt.owner: alpha
         app.kubernetes.io/version: 1.0.1
       annotations:
         team: alpha

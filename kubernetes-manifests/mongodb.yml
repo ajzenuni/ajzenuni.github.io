@@ -5,6 +5,8 @@ metadata:
   labels:
     team: bravo
     dt.owner: bravo
+  annotations:
+    team: bravo
 spec:
   selector:
     matchLabels:

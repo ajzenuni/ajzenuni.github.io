@@ -3,8 +3,10 @@ kind: Deployment
 metadata:
   name: nginx
   labels:
-    team: "alpha"
-    dt.owner: "alpha"
+    team: alpha
+    dt.owner: alpha
+  annotations:
+    team: alpha
 spec:
   selector:
     matchLabels:
@@ -13,8 +15,8 @@ spec:
     metadata:
       labels:
         app: nginx
-        team: "alpha"
-        dt.owner: "alpha"
+        team: alpha
+        dt.owner: alpha
         app.kubernetes.io/name: nginx
         app.kubernetes.io/version: 1.0.1
         app.kubernetes.io/part-of: easytravel
