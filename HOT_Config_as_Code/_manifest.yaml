@@ -1,38 +1,12 @@
 manifestVersion: "1.0"
 
 projects:
-# mirrored global & local settings/configurations
-- name: databaseServiceAnom
-  path: anomalyDetection/databaseServiceAnom
-- name: serviceAnom
-  path: anomalyDetection/serviceAnom
-- name: kubernetesAnom
-  path: anomalyDetection/kubernetesAnom
-  type: grouping
-- name: rumAnom
-  path: anomalyDetection/rumAnom
-  type: grouping
-  
-# strictly global settings/configurations
-- name: tag
-  path: global/tag
-- name: managementZone
-  path: global/managementZone
-- name: ownership
-  path: global/ownership
-- name: alertingProfile
-  path: global/alertingProfile
-
-# strictly local settings/configurations
-- name: service
-  path: service
-  type: grouping
-- name: browserMonitor
-  path: browserMonitor
-  type: grouping
-- name: httpMonitor
-  path: httpMonitor
-  type: grouping
+  - name: tag
+    path: tag
+  - name: managementZones
+    path: managementZones
+  - name: ownership
+    path: ownership
   
 environmentGroups:
 - name: default
