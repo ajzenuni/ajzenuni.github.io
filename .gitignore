@@ -7,4 +7,4 @@ response.log
 .logs
 manifest.yaml
 HOT_Config_as_Code/downloaded_config/**
-HOT_Config_as_Code/_*
+HOT_Config_as_Code/_manifest.yaml
