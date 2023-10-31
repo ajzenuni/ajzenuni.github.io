@@ -1,39 +1,13 @@
 manifestVersion: "1.0"
 
 projects:
-# mirrored global & local settings/configurations
-- name: databaseServiceAnom
-  path: anomalyDetection/databaseServiceAnom
-- name: serviceAnom
-  path: anomalyDetection/serviceAnom
-- name: kubernetesAnom
-  path: anomalyDetection/kubernetesAnom
-  type: grouping
-- name: rumAnom
-  path: anomalyDetection/rumAnom
-  type: grouping
-  
-# strictly global settings/configurations
-- name: tag
-  path: global/tag
-- name: managementZone
-  path: global/managementZone
-- name: ownership
-  path: global/ownership
-- name: alertingProfile
-  path: global/alertingProfile
+  - name: tag
+    path: tag
+  - name: managementZones
+    path: managementZones
+  - name: ownership
+    path: ownership
 
-# strictly local settings/configurations
-- name: service
-  path: service
-  type: grouping
-- name: browserMonitor
-  path: browserMonitor
-  type: grouping
-- name: httpMonitor
-  path: httpMonitor
-  type: grouping
-  
 environmentGroups:
 - name: default
   environments:
@@ -43,3 +17,11 @@ environmentGroups:
     auth:
       token:
         name: API_TOKEN
+  - name: kale_managed
+    url:
+      value: https://ian685.dynatrace-managed.com/e/54d769a0-0446-4a40-86fb-b8784afbc4ee
+    auth:
+      token:
+        name: KALE_API_TOKEN
+
+
