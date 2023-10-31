@@ -5,7 +5,7 @@ configs:
         schema: builtin:ownership.teams
         scope: environment
     config:
-      name: "[auto] - Alpha"
+      name: "auto.Alpha"
       template: object.json
       skip: false
       parameters:
@@ -18,7 +18,7 @@ configs:
         schema: builtin:ownership.teams
         scope: environment
     config:
-      name: "[auto] - Bravo"
+      name: "auto.Bravo"
       template: object.json
       skip: false
       parameters:
