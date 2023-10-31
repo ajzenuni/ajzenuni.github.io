@@ -16,11 +16,5 @@ environmentGroups:
     auth:
       token:
         name: API_TOKEN
-  - name: kale_managed
-    url:
-      value: https://ian685.dynatrace-managed.com/e/54d769a0-0446-4a40-86fb-b8784afbc4ee
-    auth:
-      token:
-        name: KALE_API_TOKEN
 
 
