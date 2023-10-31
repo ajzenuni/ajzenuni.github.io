@@ -1,0 +1,14 @@
+# delete all configurations in the environment
+export MONACO_ENABLE_DANGEROUS_COMMANDS=1
+monaco purge _manifest.yaml -e kale_managed
+
+# deploy tag project
+monaco deploy _manifest.yaml -e kale_managed -p tag
+
+# deploy ownership project
+monaco deploy _manifest.yaml -e kale_managed -p ownership
+
+# deploy managementZones project
+monaco deploy _manifest.yaml -e kale_managed -p managementZones
+
+
