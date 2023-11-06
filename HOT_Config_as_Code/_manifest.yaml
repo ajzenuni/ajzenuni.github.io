@@ -7,7 +7,6 @@ projects:
     path: managementZones
   - name: ownership
     path: ownership
-  
 environmentGroups:
 - name: default
   environments:
@@ -17,3 +16,5 @@ environmentGroups:
     auth:
       token:
         name: API_TOKEN
+
+

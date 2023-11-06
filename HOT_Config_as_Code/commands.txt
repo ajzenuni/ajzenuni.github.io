@@ -1,0 +1,14 @@
+# delete all configurations in the environment - BE CAREFUL
+export MONACO_ENABLE_DANGEROUS_COMMANDS=1
+monaco purge manifest.yaml -e ENV_NAME
+
+# deploy tag project
+monaco deploy manifest.yaml -e ENV_NAME -p tag
+
+# deploy ownership project
+monaco deploy manifest.yaml -e ENV_NAME -p ownership
+
+# deploy managementZones project
+monaco deploy manifest.yaml -e ENV_NAME -p managementZones
+
+

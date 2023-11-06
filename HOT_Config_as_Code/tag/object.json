@@ -7,6 +7,20 @@
         "valueFormat": "bravo",
         "valueNormalization": "Leave text as-is",
         "type": "SELECTOR",
+        "entitySelector": "type(\"APPLICATION\"),fromRelationship.calls(type(service),tag(\"[Kubernetes]dt.owner:bravo\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "alpha",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
+        "entitySelector": "type(\"APPLICATION\"),fromRelationship.calls(type(service),tag(\"[Kubernetes]dt.owner:alpha\"))"
+      },
+      {
+        "enabled": true,
+        "valueFormat": "bravo",
+        "valueNormalization": "Leave text as-is",
+        "type": "SELECTOR",
         "entitySelector": "type(\"CONTAINER_GROUP\"),toRelationship.isInstanceOf(type(\"CONTAINER_GROUP_INSTANCE\"),fromRelationship.isCgiOfCai(type(\"CLOUD_APPLICATION_INSTANCE\"),cloudApplicationLabels(\"team:bravo\")))"
       },
       {

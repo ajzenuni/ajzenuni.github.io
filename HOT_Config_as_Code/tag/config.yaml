@@ -5,7 +5,7 @@ configs:
         schema: builtin:tags.auto-tagging
         scope: environment
     config:
-      name: "[auto] - team"
+      name: "auto.team"
       template: object.json
       skip: false
       parameters:
