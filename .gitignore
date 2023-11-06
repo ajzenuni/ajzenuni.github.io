@@ -6,3 +6,4 @@ response.log
 .logs/
 .logs
 manifest.yaml
+dynakube.yaml

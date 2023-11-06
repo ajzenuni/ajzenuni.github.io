@@ -19,13 +19,29 @@ spec:
         app.kubernetes.io/part-of: easytravel
         team: bravo
         dt.owner: bravo
-        app.kubernetes.io/version: 1.0.1
+        app.kubernetes.io/version: v1
       annotations:
         team: bravo
+        dt.owner: bravo
     spec:
       containers:
         - image: dynatrace/easytravel-mongodb
           name: mongodb
+          env:
+            - name: DT_RELEASE_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/version']
+            - name: DT_RELEASE_PRODUCT
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/part-of']
+            - name: DT_RELEASE_BUILD_VERSION
+              value: 1.0.1
+            - name: DT_RELEASE_STAGE
+              value: v1
+            - name: MY_PG_NAME
+              value: easytravel-mongodb
           imagePullPolicy: Always
           ports:
             - containerPort: 27017

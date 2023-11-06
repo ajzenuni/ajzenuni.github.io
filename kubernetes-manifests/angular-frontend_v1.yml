@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: angular-frontend
+  name: angular-frontend-v1
   labels:
     team: alpha
     dt.owner: alpha
@@ -10,26 +10,41 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: angular-frontend
+      app: angular-frontend-v1
   template:
     metadata:
       labels:
-        app: angular-frontend
-        app.kubernetes.io/name: angular-frontend
+        app: angular-frontend-v1
+        app.kubernetes.io/name: angular-frontend-v1
         app.kubernetes.io/part-of: easytravel
         team: alpha
         dt.owner: alpha
-        app.kubernetes.io/version: 1.0.1
+        app.kubernetes.io/version: v1
       annotations:
         team: alpha
+        dt.owner: alpha
     spec:
       containers:
         - env:
             - name: ET_BACKEND_URL
               value: http://backend-service:8080
+            - name: DT_RELEASE_VERSION
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/version']
+            - name: DT_RELEASE_PRODUCT
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.labels['app.kubernetes.io/part-of']
+            - name: DT_RELEASE_BUILD_VERSION
+              value: 1.0.1
+            - name: DT_RELEASE_STAGE
+              value: v1
+            - name: MY_PG_NAME
+              value: easytravel-frontend-v1
           image: dynatrace/easytravel-angular-frontend
           imagePullPolicy: Always
-          name: angular-frontend
+          name: angular-frontend-v1
           ports:
             - containerPort: 8080
               protocol: TCP
@@ -42,12 +57,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-frontend-service
+  name: angular-frontend-service-v1
   labels:
     team: alpha
     dt.owner: alpha
     app.kubernetes.io/version: 1.0.1
-    app.kubernetes.io/name: angular-frontend
+    app.kubernetes.io/name: angular-frontend-v1
     app.kubernetes.io/part-of: easytravel
 spec:
   ports:
@@ -56,5 +71,5 @@ spec:
       protocol: TCP
       targetPort: 8080
   selector:
-    app: angular-frontend
+    app: angular-frontend-v1
   type: ClusterIP
