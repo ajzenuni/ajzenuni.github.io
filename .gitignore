@@ -9,3 +9,4 @@ manifest.yaml
 HOT_Config_as_Code/downloaded_config/**
 HOT_Config_as_Code/kale_manifest.yaml
 HOT_Config_as_Code/kale_commands.txt
+dynakube.yaml

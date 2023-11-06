@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx
+  name: angular-frontend-v2
   labels:
     team: alpha
     dt.owner: alpha
@@ -10,28 +10,26 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: nginx
+      app: angular-frontend-v2
   template:
     metadata:
       labels:
-        app: nginx
+        app: angular-frontend-v2
+        app.kubernetes.io/name: angular-frontend-v2
+        app.kubernetes.io/part-of: easytravel
         team: alpha
         dt.owner: alpha
-        app.kubernetes.io/name: nginx
-        app.kubernetes.io/version: v1
-        app.kubernetes.io/part-of: easytravel
+        app.kubernetes.io/version: v2
       annotations:
         team: alpha
         dt.owner: alpha
-        stage: v1
-        product: nginx
+        stage: v2
+        product: angular-frontend
     spec:
       containers:
         - env:
-            - name: ET_ANGULAR_FRONTEND_LOCATION
-              value: angular-frontend-service-v1:8080
-            - name: ET_BACKEND_LOCATION
-              value: backend-service:8080
+            - name: ET_BACKEND_URL
+              value: http://backend-service:8080
             - name: DT_RELEASE_VERSION
               valueFrom:
                 fieldRef:
@@ -41,40 +39,39 @@ spec:
                 fieldRef:
                   fieldPath: metadata.labels['app.kubernetes.io/part-of']
             - name: DT_RELEASE_BUILD_VERSION
-              value: 1.0.1
+              value: 2.0.1
             - name: DT_RELEASE_STAGE
-              value: v1
+              value: v2
             - name: MY_PG_NAME
-              value: easytravel-nginx
-          image: dynatrace/easytravel-nginx
+              value: easytravel-frontend-v2
+          image: dynatrace/easytravel-angular-frontend
           imagePullPolicy: Always
-          name: nginx
+          name: angular-frontend-v2
           ports:
-            - containerPort: 80
-              protocol: TCP
-            - containerPort: 9079
+            - containerPort: 8080
               protocol: TCP
           resources:
             requests:
-              memory: "150Mi"
+              memory: "500Mi"
             limits:
-              memory: "150Mi"
+              memory: "500Mi"
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: angular-nginx-service
+  name: angular-frontend-service-v2
   labels:
     team: alpha
     dt.owner: alpha
-    app.kubernetes.io/version: 1.0.1
-    app.kubernetes.io/name: nginx
+    app.kubernetes.io/version: 1.0.2
+    app.kubernetes.io/name: angular-frontend-v2
     app.kubernetes.io/part-of: easytravel
 spec:
   ports:
-    - protocol: TCP
-      targetPort: 9079
-      port: 80
+    - name: web
+      port: 8080
+      protocol: TCP
+      targetPort: 8080
   selector:
-    app: nginx
-  type: LoadBalancer
+    app: angular-frontend-v2
+  type: ClusterIP
