@@ -23,6 +23,8 @@ spec:
       annotations:
         team: alpha
         dt.owner: alpha
+        stage: v2
+        product: angular-frontend
     spec:
       containers:
         - env:

@@ -23,6 +23,8 @@ spec:
       annotations:
         team: alpha
         dt.owner: alpha
+        stage: v1
+        product: nginx
     spec:
       containers:
         - env:

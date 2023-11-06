@@ -24,6 +24,8 @@ spec:
       annotations:
         team: bravo
         dt.owner: bravo
+        stage: v1
+        product: backend
     spec:
       containers:
         - env:
