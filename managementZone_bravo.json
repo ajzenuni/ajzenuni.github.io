@@ -4,8 +4,8 @@
         "schemaVersion": "1.0.6",
         "scope": "environment",
         "value": {
-            "name": "[manual] beta",
-            "description": "beta managementZone",
+            "name": "[manual] bravo",
+            "description": "bravo managementZone",
             "rules": [
                 {
                     "enabled": true,
@@ -16,7 +16,7 @@
                     {
                     "key": "PROCESS_GROUP_TAGS",
                     "operator": "EQUALS",
-                    "tag": "[manual] team:beta"
+                    "tag": "[manual] team:bravo"
                     }
                     ],
                     "pgToHostPropagation": true,
