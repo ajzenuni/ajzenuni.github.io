@@ -10,6 +10,11 @@ configs:
         configType: builtin:management-zones
         property: id
         type: reference
+  type:
+    settings:
+      schema: builtin:alerting.maintenance-window
+      schemaVersion: 2.14.4
+      scope: environment
 - id: bravoMaintenanceWindow
   config:
     name: auto.Bravo"
