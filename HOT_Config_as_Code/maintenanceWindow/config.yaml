@@ -10,6 +10,8 @@ configs:
       endTime: "13:00"
       startDate: "2023-11-13"
       endDate: "2024-02-10"
+      # as timezone you may use one of the following values: ["UTC", "America/New_York", "Europe/Berlin"]
+      timeZone: "UTC"
       mz_id:
         project: managementZones
         configId: alphaManagmentZone
@@ -32,6 +34,8 @@ configs:
       endTime: "13:00"
       startDate: "2023-11-13"
       endDate: "2024-02-10"
+      # as timezone you may use one of the following values: ["UTC", "America/New_York", "Europe/Berlin"]
+      timeZone: "UTC"
       mz_id:
         project: managementZones
         configId: bravoManagmentZone
