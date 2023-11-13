@@ -5,7 +5,7 @@ configs:
     template: object.json
     skip: false
     parameters:
-      mz_id:
+      alphaManagmentZone:
         configId: alphaManagmentZone
         configType: builtin:management-zones
         property: id
@@ -21,7 +21,7 @@ configs:
     template: object.json
     skip: false
     parameters:
-      mz_id:
+      bravoManagmentZone:
         configId: bravoManagmentZone
         configType: builtin:management-zones
         property: id
