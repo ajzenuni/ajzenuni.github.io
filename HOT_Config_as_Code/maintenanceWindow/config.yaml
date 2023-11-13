@@ -5,7 +5,13 @@ configs:
     template: object.json
     skip: false
     parameters:
-      alphaManagmentZone:
+      dayOfWeek: SATURDAY
+      startTime: "11:00"
+      endTime: "13:00"
+      startDate: "2023-11-13"
+      endDate: "2024-02-10"
+      mz_id:
+        project: managementZones
         configId: alphaManagmentZone
         configType: builtin:management-zones
         property: id
@@ -21,7 +27,13 @@ configs:
     template: object.json
     skip: false
     parameters:
-      bravoManagmentZone:
+      dayOfWeek: SATURDAY
+      startTime: "11:00"
+      endTime: "13:00"
+      startDate: "2023-11-13"
+      endDate: "2024-02-10"
+      mz_id:
+        project: managementZones
         configId: bravoManagmentZone
         configType: builtin:management-zones
         property: id

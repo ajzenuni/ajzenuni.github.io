@@ -1,32 +1,31 @@
 {
-    "name": "{{.name}}",
-    "description": "",
-    "type": "PLANNED",
-    "enabled": false,
-    "suppression": "DETECT_PROBLEMS_AND_ALERT",
-    "suppressSyntheticMonitorsExecution": false,
-    "scope": {
-      "entities": [],
-      "matches": [
-        {
-          "type": null,
-          "managementZoneId": "{{.mzId}}",
-          "mzId": "{{.mzId}}",
-          "tags": [],
-          "tagCombination": "AND"
-        }
-      ]
-    },
-    "schedule": {
-      "recurrenceType": "WEEKLY",
-      "recurrence": {
-        "dayOfWeek": "{{.dayOfWeek}}",
-        "dayOfMonth": null,
-        "startTime": "{{.startTime}}",
-        "durationMinutes": "{{.durationMinutes}}"
+  "enabled": true,
+  "generalProperties": {
+    "name": "{{ .name }}",
+    "maintenanceType": "PLANNED",
+    "suppression": "DONT_DETECT_PROBLEMS",
+    "disableSyntheticMonitorExecution": false
+  },
+  "schedule": {
+    "scheduleType": "WEEKLY",
+    "weeklyRecurrence": {
+      "dayOfWeek": "MONDAY",
+      "timeWindow": {
+        "startTime": "{{ .startTime }}",
+        "endTime": "{{ .endTime }}",
+        "timeZone": "UTC"
       },
-      "start": "{{.start}}",
-      "end": "{{.end}}",
-      "zoneId": "UTC"
+      "recurrenceRange": {
+        "scheduleStartDate": "{{ .startDate }}",
+        "scheduleEndDate": "{{ .endDate }}"
+      }
     }
-  }
+  },
+  "filters": [
+    {
+      "managementZones": [
+        "{{.mz_id}}"
+      ]
+    }
+  ]
+}
