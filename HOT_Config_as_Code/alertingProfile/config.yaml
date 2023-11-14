@@ -1,0 +1,33 @@
+configs:
+  - id: alphaAlertingProfile
+    type:
+      settings:
+        schema: builtin:alerting.profile
+        scope: environment
+    config:
+      name: auto.Alpha
+      template: object.json
+      skip: false
+      parameters:
+        mz_id:
+          project: managementZones
+          configId: alphaManagmentZone
+          configType: builtin:management-zones
+          property: id
+          type: reference
+  - id: bravoAlertingProfile
+    type:
+      settings:
+        schema: builtin:alerting.profile
+        scope: environment
+    config:
+      name: auto.Bravo
+      template: object.json
+      skip: false
+      parameters:
+        mz_id:
+          project: managementZones
+          configId: bravoManagmentZone
+          configType: builtin:management-zones
+          property: id
+          type: reference

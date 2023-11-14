@@ -1,0 +1,18 @@
+{
+  "enabled": {{.enabled}},
+  "type": "EMAIL",
+  "displayName": "{{.name}}",
+  "emailNotification": {
+    "recipients": [
+      "{{.recipient}}"
+    ],
+    "ccRecipients": [
+      "{{.ccRecipient}}"
+    ],
+    "bccRecipients": [],
+    "subject": "{State} Problem {ProblemID}: {ImpactedEntity}",
+    "notifyClosedProblems": true,
+    "body": "{ProblemDetailsHTML}"
+  },
+  "alertingProfile": "{{.alertingProfileId}}"
+}
