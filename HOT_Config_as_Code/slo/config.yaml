@@ -1,0 +1,59 @@
+configs:
+- id: alphaSlo
+  config:
+    name: alphaServiceAvailability
+    template: object.json
+    skip: false
+    parameters:
+      metricName: alpha_service_availability
+      customDescription: "This SLO is a global KPI for the team's Service availability"
+      metricExpression: "(100)*(builtin:service.errors.server.successCount:splitBy())/(builtin:service.requestCount.server:splitBy())"
+      targetSuccess: 99.5
+      targetWarning: 99.8 
+      filter: 
+        type: compound
+        format: "type(\"SERVICE\"),mzName(\"{{.mz_id}}\")"
+        references:
+          - mz_id
+      evaluationWindow: "-1h"
+      fastBurnThreshold: 5
+      mz_id:
+        project: managementZones
+        configId: alphaManagmentZone
+        configType: builtin:management-zones
+        property: name
+        type: reference
+  type:
+    settings:
+      schema: builtin:monitoring.slo
+      schemaVersion: 6.0.13
+      scope: environment
+- id: bravoSlo
+  config:
+    name: bravoServiceAvailability
+    template: object.json
+    skip: false
+    parameters:
+      metricName: bravo_service_availability
+      customDescription: "This SLO is a global KPI for the team's Service availability"
+      metricExpression: "(100)*(builtin:service.errors.server.successCount:splitBy())/(builtin:service.requestCount.server:splitBy())"
+      targetSuccess: 99.5
+      targetWarning: 99.8
+      filter:
+        type: compound
+        format: "type(\"SERVICE\"),mzName(\"{{.mz_id}}\")"
+        references:
+          - mz_id
+      evaluationWindow: "-1h"
+      fastBurnThreshold: 5
+      mz_id:
+        project: managementZones
+        configId: bravoManagmentZone
+        configType: builtin:management-zones
+        property: name
+        type: reference
+  type:
+    settings:
+      schema: builtin:monitoring.slo
+      schemaVersion: 6.0.13
+      scope: environment

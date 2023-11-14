@@ -13,6 +13,8 @@ projects:
     path: alertingProfile
   - name: notification
     path: notification
+  - name: slo
+    path: slo
 environmentGroups:
 - name: default
   environments:
