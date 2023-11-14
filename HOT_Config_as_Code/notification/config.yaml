@@ -1,0 +1,39 @@
+configs:
+- id: alphaNotification
+  config:
+    name: "auto.Alpha"
+    template: object.json
+    parameters:
+      recipient: "test@email.com"
+      ccRecipient: "test2@email.com" 
+      enabled: true
+      alertingProfileId:
+        project: alertingProfile
+        configId: alphaAlertingProfile
+        configType: builtin:alerting.profile
+        property: id
+        type: reference
+  type:
+    settings:
+      schema: builtin:problem.notifications
+      schemaVersion: 1.4.11
+      scope: environment
+- id: bravoNotification
+  config:
+    name: "auto.Bravo"
+    template: object.json
+    parameters:
+      recipient: "test@email.com"
+      ccRecipient: "test2@email.com"
+      enabled: true
+      alertingProfileId:
+        project: alertingProfile
+        configId: bravoAlertingProfile
+        configType: builtin:alerting.profile
+        property: id
+        type: reference
+  type:
+    settings:
+      schema: builtin:problem.notifications
+      schemaVersion: 1.4.11
+      scope: environment

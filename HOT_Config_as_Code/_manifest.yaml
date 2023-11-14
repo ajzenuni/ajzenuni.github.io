@@ -11,6 +11,8 @@ projects:
     path: maintenanceWindow
   - name: alertingProfile
     path: alertingProfile
+  - name: notification
+    path: notification
 environmentGroups:
 - name: default
   environments:
