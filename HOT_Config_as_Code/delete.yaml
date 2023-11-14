@@ -1,0 +1,46 @@
+delete:
+  - project: tag
+    type: builtin:tags.auto-tagging  
+    id: teamTagId
+
+  - project: slo
+    type: builtin:monitoring.slo
+    id: alphaSlo
+  - project: slo
+    type: builtin:monitoring.slo 
+    id: bravoSlo
+
+  - project: ownership
+    type: builtin:ownership.teams
+    id: alphaOwnership
+  - project: ownership
+    type: builtin:ownership.teams 
+    id: bravoOwnership
+
+  - project: notification
+    type: builtin:problem.notifications
+    id: alphaNotification
+  - project: notification
+    type: builtin:problem.notifications 
+    id: bravoNotification
+
+  - project: managementZones
+    type: builtin:management-zones
+    id: alphaManagmentZone
+  - project: managementZones
+    type: builtin:management-zones
+    id: bravoManagmentZone
+
+  - project: maintenanceWindow
+    type: builtin:alerting.maintenance-window
+    id: alphaMaintenanceWindow
+  - project: maintenanceWindow
+    type: builtin:alerting.maintenance-window
+    id: bravoMaintenanceWindow
+
+  - project: alertingProfile
+    type: builtin:alerting.profile
+    id: alphaAlertingProfile
+  - project: maintenanceWindow
+    type: builtin:alerting.profile
+    id: bravoAlertingProfile

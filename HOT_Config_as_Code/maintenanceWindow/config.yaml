@@ -1,7 +1,7 @@
 configs:
 - id: alphaMaintenanceWindow
   config:
-    name: "auto.Alpha"
+    name: auto.Alpha
     template: object.json
     skip: false
     parameters:
@@ -25,7 +25,7 @@ configs:
       scope: environment
 - id: bravoMaintenanceWindow
   config:
-    name: auto.Bravo"
+    name: auto.Bravo
     template: object.json
     skip: false
     parameters:
