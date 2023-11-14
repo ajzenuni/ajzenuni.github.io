@@ -1,0 +1,49 @@
+configs:
+- id: alphaMaintenanceWindow
+  config:
+    name: "auto.Alpha"
+    template: object.json
+    skip: false
+    parameters:
+      dayOfWeek: SATURDAY
+      startTime: "11:00"
+      endTime: "13:00"
+      startDate: "2023-11-13"
+      endDate: "2024-02-10"
+      # as timezone you may use one of the following values: ["UTC", "America/New_York", "Europe/Berlin"]
+      timeZone: "UTC"
+      mz_id:
+        project: managementZones
+        configId: alphaManagmentZone
+        configType: builtin:management-zones
+        property: id
+        type: reference
+  type:
+    settings:
+      schema: builtin:alerting.maintenance-window
+      schemaVersion: 2.14.4
+      scope: environment
+- id: bravoMaintenanceWindow
+  config:
+    name: auto.Bravo"
+    template: object.json
+    skip: false
+    parameters:
+      dayOfWeek: SATURDAY
+      startTime: "11:00"
+      endTime: "13:00"
+      startDate: "2023-11-13"
+      endDate: "2024-02-10"
+      # as timezone you may use one of the following values: ["UTC", "America/New_York", "Europe/Berlin"]
+      timeZone: "UTC"
+      mz_id:
+        project: managementZones
+        configId: bravoManagmentZone
+        configType: builtin:management-zones
+        property: id
+        type: reference
+  type:
+    settings:
+      schema: builtin:alerting.maintenance-window
+      schemaVersion: 2.14.4
+      scope: environment

@@ -7,6 +7,14 @@ projects:
     path: managementZones
   - name: ownership
     path: ownership
+  - name: maintenanceWindow
+    path: maintenanceWindow
+  - name: alertingProfile
+    path: alertingProfile
+  - name: notification
+    path: notification
+  - name: slo
+    path: slo
 environmentGroups:
 - name: default
   environments:
