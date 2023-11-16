@@ -77,4 +77,16 @@ spec:
       port: 80
   selector:
     app: nginx
-  type: LoadBalancer
+  type: NodePort
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: nginx-ingress
+spec:
+  defaultBackend:
+    service:
+      name: angular-nginx-service
+      port:
+        number: 80
+
