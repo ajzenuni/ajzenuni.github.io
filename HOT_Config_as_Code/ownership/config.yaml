@@ -25,3 +25,14 @@ configs:
         description: "Ownership for team Bravo"
         identifier: "bravo"
         url: "https://team.bravo.com"
+  - id: autoTeam
+    type:
+      settings:
+        schema: builtin:ownership.config
+        scope: environment
+    config:
+      name: "autoTeam"
+      template: object2.json
+      skip: false
+      parameters:
+        key: "auto.team"
