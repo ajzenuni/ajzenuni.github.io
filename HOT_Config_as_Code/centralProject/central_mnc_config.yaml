@@ -10,6 +10,9 @@
 #            OWNERSHIP; TAG; MANAGEMENT ZONE;                              #
 #            WEB APPLICATION CONFIGURATION; WEB APPLICATION DETECTION;     # 
 #            ALERTING PROFILE; NOTIFICATION; MAINTENANCE WINDOW; SLO;      #
+# FURTHER CONFIGS CAN BE ADDED SUCH AS:                                    #
+#            SYNTHETIC MONITOR; ANOMALY DETECTION; ETC.                    #
+#            CHECK OFFICIAL DOC FOR FURTHER SUPPORTED CONFIG TYPES!        #
 ############################################################################
 configs:
 ############################################################################
