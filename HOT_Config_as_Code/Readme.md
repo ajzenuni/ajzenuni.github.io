@@ -11,8 +11,8 @@
 ### deploy ownership project
 `monaco deploy manifest.yaml -e ENV_NAME -p ownership`
 
-### deploy managementZones project
-`monaco deploy manifest.yaml -e ENV_NAME -p managementZones`
+### deploy centralProject (all projects in this folder will be deployed)
+`monaco deploy manifest.yaml -e ENV_NAME -p centralProject`
 
 ### delete configurations as specified in delete.yaml
 `monaco delete --manifest manifest.yaml -e ENV_NAME --file delete.yaml`
