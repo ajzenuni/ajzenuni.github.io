@@ -15,14 +15,19 @@ projects:
     path: notification
   - name: slo
     path: slo
+  - name: applicationWeb
+    path: applicationWeb
+  - name: applicationDetection
+    path: applicationDetection
+  - name: centralProject
+    path: centralProject
 environmentGroups:
-- name: default
-  environments:
-  - name: ENV_NAME
-    url:
-      value: https://ENV_ID.live.dynatrace.com
-    auth:
-      token:
-        name: API_TOKEN
-
+  - name: default
+    environments:
+      - name: ENV_NAME
+        url:
+          value: https://ENV_ID.live.dynatrace.com
+        auth:
+          token:
+            name: API_TOKEN
 

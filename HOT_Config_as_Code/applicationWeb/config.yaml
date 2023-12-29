@@ -1,0 +1,7 @@
+configs:
+- id: alphaAppWeb
+  config:
+    name: auto.Alpha
+    skip: false
+    template: object.json
+  type: application-web

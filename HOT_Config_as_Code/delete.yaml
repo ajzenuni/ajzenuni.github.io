@@ -1,46 +1,92 @@
 delete:
-  - project: tag
-    type: builtin:tags.auto-tagging  
-    id: teamTagId
-
-  - project: slo
-    type: builtin:monitoring.slo
-    id: alphaSlo
-  - project: slo
-    type: builtin:monitoring.slo 
-    id: bravoSlo
-
+## CAREFUL: IT IS NOT RECOMMENDED TO MIX DIFFERENT STRUCTURES INTO ONE DELETE-FILE - USE EITHER A OR B.
+## A: INDIVIDUAL PROJECTS PER CONFIGURATION
   - project: ownership
     type: builtin:ownership.teams
     id: alphaOwnership
   - project: ownership
     type: builtin:ownership.teams 
-    id: bravoOwnership
-
-  - project: notification
-    type: builtin:problem.notifications
-    id: alphaNotification
-  - project: notification
-    type: builtin:problem.notifications 
-    id: bravoNotification
-
+    id: bravoOwnership 
+  - project: tag
+    type: builtin:tags.auto-tagging  
+    id: teamTagId
   - project: managementZones
     type: builtin:management-zones
     id: alphaManagmentZone
   - project: managementZones
     type: builtin:management-zones
     id: bravoManagmentZone
-
+  - project: alertingProfile
+    type: builtin:alerting.profile
+    id: alphaAlertingProfile
+  - project: alertingProfile
+    type: builtin:alerting.profile
+    id: bravoAlertingProfile
+  - project: notification
+    type: builtin:problem.notifications
+    id: alphaNotification
+  - project: notification
+    type: builtin:problem.notifications 
+    id: bravoNotification
   - project: maintenanceWindow
     type: builtin:alerting.maintenance-window
     id: alphaMaintenanceWindow
   - project: maintenanceWindow
     type: builtin:alerting.maintenance-window
     id: bravoMaintenanceWindow
-
-  - project: alertingProfile
+  - project: slo
+    type: builtin:monitoring.slo
+    id: alphaSlo
+  - project: slo
+    type: builtin:monitoring.slo 
+    id: bravoSlo
+## B: CENTRAL PROJECT FOR ALL CONFIGURATIONS
+  - project: centralProject
+    type: builtin:ownership.teams
+    id: alphaOwnership
+  - project: centralProject
+    type: builtin:ownership.teams 
+    id: bravoOwnership
+  - project: centralProject
+    type: builtin:tags.auto-tagging
+    id: teamTagId
+  - project: centralProject
+    type: builtin:management-zones
+    id: alphaManagmentZone
+  - project: centralProject
+    type: builtin:management-zones
+    id: bravoManagmentZone
+  - project: centralProject
+    type: application-web
+    name: auto.Alpha
+  - project: centralProject
+    type: builtin:rum.web.app-detection
+    id: alphaAppDetection
+  - project: centralProject
     type: builtin:alerting.profile
     id: alphaAlertingProfile
-  - project: maintenanceWindow
+  - project: centralProject
     type: builtin:alerting.profile
     id: bravoAlertingProfile
+  - project: centralProject
+    type: builtin:problem.notifications
+    id: alphaNotification
+  - project: centralProject
+    type: builtin:problem.notifications 
+    id: bravoNotification
+  - project: centralProject
+    type: builtin:alerting.maintenance-window
+    id: alphaMaintenanceWindow
+  - project: centralProject
+    type: builtin:alerting.maintenance-window
+    id: bravoMaintenanceWindow
+  - project: centralProject
+    type: builtin:monitoring.slo
+    id: alphaSlo
+  - project: centralProject
+    type: builtin:monitoring.slo 
+    id: bravoSlo
+
+
+
+
