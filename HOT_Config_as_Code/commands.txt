@@ -3,12 +3,13 @@ export MONACO_ENABLE_DANGEROUS_COMMANDS=1
 monaco purge manifest.yaml -e ENV_NAME
 
 # deploy tag project
-monaco deploy manifest.yaml -e ENV_NAME -p tag
+monaco deploy _manifest.yaml -e ENV_NAME -p tag
 
 # deploy ownership project
-monaco deploy manifest.yaml -e ENV_NAME -p ownership
+monaco deploy _manifest.yaml -e ENV_NAME -p ownership
 
 # deploy managementZones project
-monaco deploy manifest.yaml -e ENV_NAME -p managementZones
+monaco deploy _manifest.yaml -e ENV_NAME -p managementZones
 
-
+# delete projects
+monaco delete --manifest _manifest.yaml -e kale_managed --file delete.yaml
