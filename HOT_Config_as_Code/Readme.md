@@ -1,22 +1,21 @@
-# delete manifest
-monaco delete --manifest manifest.yaml --file delete.yaml
+## DOC
+- https://docs.dynatrace.com/docs/shortlink/configuration-as-code-commands
 
-# deploy a single project
-monaco deploy manifest.yaml -e PROD -p ownership 
+## Configuration as Code - Monaco - terminal commands
+### get help for monaco
+`monaco -h`
 
-# delete all configurations in the environment - BE CAREFUL
-export MONACO_ENABLE_DANGEROUS_COMMANDS=1
-monaco purge manifest.yaml -e ENV_NAME
+### deploy tag project
+`monaco deploy manifest.yaml -e ENV_NAME -p tag`
 
-# deploy tag project
-monaco deploy _manifest.yaml -e ENV_NAME -p tag
+### deploy ownership project
+`monaco deploy manifest.yaml -e ENV_NAME -p ownership`
 
-# deploy ownership project
-monaco deploy _manifest.yaml -e ENV_NAME -p ownership
+### deploy managementZones project
+`monaco deploy manifest.yaml -e ENV_NAME -p managementZones`
 
-# deploy managementZones project
-monaco deploy _manifest.yaml -e ENV_NAME -p managementZones
+### delete configurations as specified in delete.yaml
+`monaco delete --manifest manifest.yaml -e ENV_NAME --file delete.yaml`
 
-# delete projects
-monaco delete --manifest _manifest.yaml -e kale_managed --file delete.yaml
-
+### download environment configurations
+`monaco download --manifest manifest.yaml -e ENV_NAME`
