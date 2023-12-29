@@ -1,0 +1,24 @@
+configs:
+- id: alphaAppDetection
+  config:
+    name: auto.Alpha
+    skip: false
+    template: object.json
+    parameters:
+      # possible values: 
+      # DOMAIN_STARTS_WITH, DOMAIN_ENDS_WITH, DOMAIN_EQUALS, DOMAIN_CONTAINS, DOMAIN_MATCHES
+      # URL_STARTS_WITH, URL_ENDS_WITH, URL_EQUALS, URL_CONTAINS, URL_MATCHES
+      matcher: "DOMAIN_MATCHES"
+      pattern: "angular-nginx-service"
+      description: "Filter the traffic to your EasyTravel K8s web-app"
+      app_id:
+        project: applicationWeb
+        configId: alphaAppWeb
+        configType: application-web
+        property: id
+        type: reference
+  type:
+    settings:
+      schema: builtin:rum.web.app-detection
+      schemaVersion: 2.1.1
+      scope: environment

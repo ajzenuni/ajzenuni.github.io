@@ -1,0 +1,22 @@
+{
+    "name": "{{.name}}",
+    "description": "{{.description}}",
+    "identifier": "{{.identifier}}",
+    "supplementaryIdentifiers": [],
+    "responsibilities": {
+      "development": true,
+      "security": false,
+      "operations": true,
+      "infrastructure": false,
+      "lineOfBusiness": false
+    },
+    "contactDetails": [],
+    "links": [
+      {
+        "linkType": "URL",
+        "url": "{{.url}}"
+      }
+    ],
+    "additionalInformation": [],
+    "externalId": null
+  }

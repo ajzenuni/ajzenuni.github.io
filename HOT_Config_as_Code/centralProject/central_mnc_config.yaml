@@ -1,0 +1,373 @@
+############################################################################
+# THIS TEMPLATE SHALL SERVE AS AN INSPIRATION.                             #
+# IT NEEDS TO BE ADAPTED TO YOUR SYSTEMS AND ORGANIZATION STRUCTURES       #
+############################################################################
+# PLEASE FILL OUT THIS FORM WHILE USING THE GUIDELINE PROVIDED VIA <LINK>. #
+# THIS TEMPLATE IS USED FOR A K8S FULL-STACK APPLICATION WITH BE/FE TEAMS  #
+# CHECK THIS <LINK> FOR OTHER TEMPLATES DEPENDING ON PLATFORM & USE CASE   #
+############################################################################
+# THIS TEMPLATE INCLUDES FOLLOWING CONFIGS:                                #
+#            OWNERSHIP; TAG; MANAGEMENT ZONE;                              #
+#            WEB APPLICATION CONFIGURATION; WEB APPLICATION DETECTION;     # 
+#            ALERTING PROFILE; NOTIFICATION; MAINTENANCE WINDOW; SLO;      #
+# FURTHER CONFIGS CAN BE ADDED SUCH AS:                                    #
+#            SYNTHETIC MONITOR; ANOMALY DETECTION; ETC.                    #
+#            CHECK OFFICIAL DOC FOR FURTHER SUPPORTED CONFIG TYPES!        #
+############################################################################
+configs:
+############################################################################
+# PART I:                                                                  #
+# OWNERSHIP CONFIGURATION                                                  #
+# DOC: https://docs.dynatrace.com/docs/shortlink/ownership                 #
+# PURPOSE: Quick identification of responsibilities for                    #
+#                                  Dev/Sec/Op/Infra/Biz                    #
+############################################################################
+##               OWNERSHIP CONFIGURATION FOR THE FRONTEND TEAM            ##
+  - id: alphaOwnership
+    type:
+      settings:
+        schema: builtin:ownership.teams
+        scope: environment
+    config:
+      name: "auto.Alpha"
+      template: ./ownership/object.json
+      skip: false
+      parameters:
+        description: "Ownership for team Alpha"
+        identifier: "alpha"
+        url: "https://team.alpha.com"
+##               OWNERSHIP CONFIGURATION FOR THE BACKEND TEAM             ##
+  - id: bravoOwnership
+    type:
+      settings:
+        schema: builtin:ownership.teams
+        scope: environment
+    config:
+      name: "auto.Bravo"
+      template: ./ownership/object.json
+      skip: false
+      parameters:
+        description: "Ownership for team Bravo"
+        identifier: "bravo"
+        url: "https://team.bravo.com"
+##    DO NOT TOUCH autoTeam CONFIG! CHANGE ALLOWED ONLY BY ADMIN TEAM     ##
+##               REQUEST CHANGE UNDER THIS <LINK>                         ##
+  - id: autoTeam
+    type:
+      settings:
+        schema: builtin:ownership.config
+        scope: environment
+    config:
+      name: "autoTeam"
+      template: ./ownership/object2.json
+      skip: false
+      parameters:
+        key: "auto.team"
+############################################################################
+# PART II:                                                                 #
+# TAGGING OF ENTITIES                                                      #
+# DOC: https://docs.dynatrace.com/docs/shortlink/tags-and-metadata-hub     #
+# PURPOSE: Organizational - filtering of entities in different views       #
+############################################################################
+##               TAG CONFIGURATION FOR BOTH FE/BE TEAM                    ##
+  - id: teamTagId
+    type:
+      settings:
+        schema: builtin:tags.auto-tagging
+        scope: environment
+    config:
+      name: "auto.team"
+      template: ./tag/object.json
+      skip: false
+      parameters:
+        description: "Team tag dependent on the dt.owner/team label"
+############################################################################
+# PART III:                                                                #
+# MANAGEMENT ZONE CONFIGURATION                                            #
+# DOC: https://docs.dynatrace.com/docs/shortlink/management-zones-hub      #
+# PURPOSE: Filtering and access control                                    #
+############################################################################
+##               MANAGEMENT ZONE CONFIGURATION FOR THE FRONTEND TEAM      ##
+  - id: alphaManagmentZone
+    type:
+      settings:
+        schema: builtin:management-zones
+        scope: environment
+    config:
+      name: auto.Alpha
+      template: ./managementZones/object.json
+      skip: false
+      parameters:
+        description: "ManagementZone for team Alpha"
+        identifier: "alpha"
+##               MANAGEMENT ZONE CONFIGURATION FOR THE BACKEND TEAM       ##
+  - id: bravoManagmentZone
+    type:
+      settings:
+        schema: builtin:management-zones
+        scope: environment
+    config:
+      name: auto.Bravo
+      template: ./managementZones/object.json
+      skip: false
+      parameters:
+        description: "ManagementZone for team Bravo"
+        identifier: "bravo"
+############################################################################
+# PART IV:                                                                 #
+# WEB APPLICATION CONFIGURATION                                            #
+# DOCs:                                                                    #
+# https://docs.dynatrace.com/docs/shortlink/rum-overview                   #
+# https://docs.dynatrace.com/docs/shortlink/api-config-web-app-post-web-app#
+# PURPOSE: Create an web application (frontend) instance for RUM data      #
+############################################################################
+##               WEB APPLICATION CONFIGURATION FOR THE FRONTEND TEAM      ##
+  - id: alphaAppWeb
+    config:
+      name: auto.Alpha
+      skip: false
+      template: ./applicationWeb/object.json
+    type: application-web
+############################################################################
+# PART V:                                                                  #
+# WEB APPLICATION DETECTION                                                #
+# DOCs:                                                                    #
+# https://docs.dynatrace.com/docs/shortlink/rum-overview                   #
+# https://docs.dynatrace.../shortlink/api-config-app-detection-post-rule   #
+# PURPOSE: Create an web application (frontend) instance for RUM data      #
+  - id: alphaAppDetection
+    config:
+      name: auto.Alpha
+      skip: false
+      template: ./applicationDetection/object.json
+      parameters:
+        # possible values: 
+        # DOMAIN_STARTS_WITH, DOMAIN_ENDS_WITH, DOMAIN_EQUALS, DOMAIN_CONTAINS, DOMAIN_MATCHES
+        # URL_STARTS_WITH, URL_ENDS_WITH, URL_EQUALS, URL_CONTAINS, URL_MATCHES
+        matcher: "DOMAIN_MATCHES"
+        pattern: "angular-nginx-service"
+        description: "Filter the traffic to your EasyTravel K8s web-app"
+        # REFERENCE THE APPLICATION ID FROM THE application-web CONFIGURATION (PART IV)
+        app_id:
+          project: centralProject
+          configId: alphaAppWeb
+          configType: application-web
+          property: id
+          type: reference
+    type:
+      settings:
+        schema: builtin:rum.web.app-detection
+        schemaVersion: 2.1.1
+        scope: environment
+############################################################################
+# PART VI:                                                                 #
+# ALERTING PROFILE CONFIGURATION                                           #
+# DOC: https://docs.dynatrace.com/docs/shortlink/alerting-profiles         #
+# PURPOSE: Filter problems that are relevant for your teams &              #
+# filter problems to be sent to 3rd-party systems                          #
+############################################################################
+##               ALERTING PROFILE CONFIGURATION FOR THE FRONTEND TEAM     ##
+  - id: alphaAlertingProfile
+    type:
+      settings:
+        schema: builtin:alerting.profile
+        scope: environment
+    config:
+      name: auto.Alpha
+      template: ./alertingProfile/object.json
+      skip: false
+      parameters:
+        mz_id:
+          project: centralProject
+          configId: alphaManagmentZone
+          configType: builtin:management-zones
+          property: id
+          type: reference
+##               ALERTING PROFILE CONFIGURATION FOR THE BACKEND TEAM      ##
+  - id: bravoAlertingProfile
+    type:
+      settings:
+        schema: builtin:alerting.profile
+        scope: environment
+    config:
+      name: auto.Bravo
+      template: ./alertingProfile/object.json
+      skip: false
+      parameters:
+        mz_id:
+          project: centralProject
+          configId: bravoManagmentZone
+          configType: builtin:management-zones
+          property: id
+          type: reference
+############################################################################
+# PART VII:                                                                 #
+# NOTIFICATION CONFIGURATION                                               #
+# DOC: https://docs.dynatrace.com/docs/shortlink/problem-notifications     #
+# PURPOSE: Receive notifications about app issues via E-Mail               #
+############################################################################
+##               NOTIFICATION CONFIGURATION FOR THE FRONTEND TEAM         ##
+  - id: alphaNotification
+    config:
+      name: "auto.Alpha"
+      template: ./notification/object.json
+      parameters:
+        recipient: "test@email.com"
+        ccRecipient: "test2@email.com"
+        enabled: true
+        alertingProfileId:
+          project: centralProject
+          configId: alphaAlertingProfile
+          configType: builtin:alerting.profile
+          property: id
+          type: reference
+    type:
+      settings:
+        schema: builtin:problem.notifications
+        schemaVersion: 1.4.11
+        scope: environment
+##               NOTIFICATION CONFIGURATION FOR THE BACKEND TEAM          ##
+  - id: bravoNotification
+    config:
+      name: "auto.Bravo"
+      template: ./notification/object.json
+      parameters:
+        recipient: "test@email.com"
+        ccRecipient: "test2@email.com"
+        enabled: true
+        alertingProfileId:
+          project: centralProject
+          configId: bravoAlertingProfile
+          configType: builtin:alerting.profile
+          property: id
+          type: reference
+    type:
+      settings:
+        schema: builtin:problem.notifications
+        schemaVersion: 1.4.11
+        scope: environment
+############################################################################
+# PART VIII:                                                                 #
+# MAINTENANCE WINDOW CONFIGURATION                                         #
+# DOC: https://docs.dynatrace.com/docs/shortlink/maintenance-window        #
+# PURPOSE: Disable problem notifications, and keep your baselines clean    #
+#                                         during maintenance activities    #
+############################################################################
+##         MAINTENANCE WINDOW CONFIGURATION FOR THE FRONTEND TEAM         ##
+  - id: alphaMaintenanceWindow
+    config:
+      name: auto.Alpha
+      template:  ./maintenanceWindow/object.json
+      skip: false
+      parameters:
+        dayOfWeek: SATURDAY
+        startTime: "11:00"
+        endTime: "13:00"
+        startDate: "2023-11-13"
+        endDate: "2024-02-10"
+        # as timezone you may use one of the following values: ["UTC", "America/New_York", "Europe/Berlin"]
+        timeZone: "UTC"
+        mz_id:
+          project: centralProject
+          configId: alphaManagmentZone
+          configType: builtin:management-zones
+          property: id
+          type: reference
+    type:
+      settings:
+        schema: builtin:alerting.maintenance-window
+        schemaVersion: 2.14.4
+        scope: environment
+##         MAINTENANCE WINDOW CONFIGURATION FOR THE BACKEND TEAM          ##
+  - id: bravoMaintenanceWindow
+    config:
+      name: auto.Bravo
+      template: ./maintenanceWindow/object.json
+      skip: false
+      parameters:
+        dayOfWeek: SATURDAY
+        startTime: "11:00"
+        endTime: "13:00"
+        startDate: "2023-11-13"
+        endDate: "2024-02-10"
+        # as timezone you may use one of the following values: ["UTC", "America/New_York", "Europe/Berlin"]
+        timeZone: "UTC"
+        mz_id:
+          project: centralProject
+          configId: bravoManagmentZone
+          configType: builtin:management-zones
+          property: id
+          type: reference
+    type:
+      settings:
+        schema: builtin:alerting.maintenance-window
+        schemaVersion: 2.14.4
+        scope: environment
+############################################################################
+# PART IX:                                                                #
+# SLO CONFIGURATION                                                        #
+# DOC: https://docs.dynatrace.com/docs/shortlink/objectives-hub            #
+# PURPOSE: Track the reliability of services in terms of:                  #
+#                              availability, latency, error rate.          #
+############################################################################
+##         SLO CONFIGURATION FOR THE FRONTEND TEAM                        ##
+  - id: alphaSlo
+    config:
+      name: alphaServiceAvailability
+      template: ./slo/object.json
+      skip: false
+      parameters:
+        metricName: alpha_service_availability
+        customDescription: "This SLO is a global KPI for the team's Service availability"
+        metricExpression: "(100)*(builtin:service.errors.server.successCount:splitBy())/(builtin:service.requestCount.server:splitBy())"
+        targetSuccess: 99.5
+        targetWarning: 99.8 
+        filter: 
+          type: compound
+          format: "type(\"SERVICE\"),mzName(\"{{.mz_id}}\")"
+          references:
+            - mz_id
+        evaluationWindow: "-1h"
+        fastBurnThreshold: 5
+        mz_id:
+          project: centralProject
+          configId: alphaManagmentZone
+          configType: builtin:management-zones
+          property: name
+          type: reference
+    type:
+      settings:
+        schema: builtin:monitoring.slo
+        schemaVersion: 6.0.13
+        scope: environment
+##         SLO CONFIGURATION FOR THE FRONTEND TEAM                        ##
+  - id: bravoSlo
+    config:
+      name: bravoServiceAvailability
+      template: ./slo/object.json
+      skip: false
+      parameters:
+        metricName: bravo_service_availability
+        customDescription: "This SLO is a global KPI for the team's Service availability"
+        metricExpression: "(100)*(builtin:service.errors.server.successCount:splitBy())/(builtin:service.requestCount.server:splitBy())"
+        targetSuccess: 99.5
+        targetWarning: 99.8
+        filter:
+          type: compound
+          format: "type(\"SERVICE\"),mzName(\"{{.mz_id}}\")"
+          references:
+            - mz_id
+        evaluationWindow: "-1h"
+        fastBurnThreshold: 5
+        mz_id:
+          project: centralProject
+          configId: bravoManagmentZone
+          configType: builtin:management-zones
+          property: name
+          type: reference
+    type:
+      settings:
+        schema: builtin:monitoring.slo
+        schemaVersion: 6.0.13
+        scope: environment
+
